@@ -10,21 +10,22 @@ namespace O2Decrapper
 {
     class Program
     {
-        static readonly string SERVER_URL = "poczta.o2.pl";
+        private const string ServerUrl = "poczta.o2.pl";
+        private const int Port = 993;
+        private static readonly string Username = Environment.GetEnvironmentVariable("O2_USERNAME");
+        private static readonly string Password = Environment.GetEnvironmentVariable("O2_PASSWORD");
 
-        static void Main(string[] args)
+        private static void Main()
         {
-            var username = Environment.GetEnvironmentVariable("O2_USERNAME");
-            var password = Environment.GetEnvironmentVariable("O2_PASSWORD");
-            if (username == null || password == null)
+            if (Username == null || Password == null)
             {
                 Console.WriteLine("The O2_USERNAME and O2_PASSWORD environment variables must be set.");
                 Environment.Exit(1);
             }
 
             var client = new ImapClient();
-            client.Connect(SERVER_URL, 993);
-            client.Authenticate(username, password);
+            client.Connect(ServerUrl, Port);
+            client.Authenticate(Username, Password);
             var inbox = client.GetFolder("Inbox");
             inbox.Open(FolderAccess.ReadWrite);
             var o2 = inbox.Where(x => x.From.ToString().Contains("/o2")).ToArray();
