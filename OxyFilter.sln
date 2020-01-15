@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O2Decrapper", "O2Decrapper.csproj", "{A8B79B6E-980D-470F-99B0-8D8372A3AF4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxyFilter", "OxyFilter.csproj", "{A8B79B6E-980D-470F-99B0-8D8372A3AF4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
