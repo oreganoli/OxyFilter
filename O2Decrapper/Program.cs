@@ -8,22 +8,22 @@ namespace O2Decrapper
 {
     internal static class Program
     {
+        public static readonly O2Handler Handler = new O2Handler();
         private static void Main()
         {
-            var handler = new O2Handler();
             new Thread(() => {
                 while (true)
                 {
-                    lock (handler)
+                    int period;
+                    lock (Handler)
                     {
-                        handler.Authenticate();
-                        handler.Remove();
+                        period = Handler.WaitPeriod;
+                        Handler.Authenticate();
+                        Handler.Remove();
                     }
-                    Thread.Sleep(handler.WaitPeriod);
+                    Thread.Sleep(period);
                 }
             }).Start();
-            Thread.Sleep(10000);
-            Console.WriteLine(handler.LastDelete);
         }
     }
 }
