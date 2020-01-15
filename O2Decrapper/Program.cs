@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using MailKit;
-using MailKit.Net.Imap;
+﻿using System.Threading;
 
 namespace O2Decrapper
 {
