@@ -7,7 +7,7 @@ namespace O2Decrapper
             Info info;
             lock (Program.Handler)
             {
-                info = new Info(Program.Handler.Epoch.ToString("o"), Program.Handler.LastDelete.ToString("o"),
+                info = new Info(Program.Handler.Epoch, Program.Handler.LastDelete,
                     Program.Handler.Counter);
             }
             return info;

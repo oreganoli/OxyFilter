@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>O2 Decrapper status</title>
+</head>
+<body>
+<h1>O2 Decrapper status</h1>
+<table>
+    <tr>
+        <th>Service started</th>
+        <td id="epoch">{{info.epoch}}</td>
+    </tr>
+    <tr>
+        <th>Spam e-mails deleted</th>
+        <td id="counter">{{info.counter}}</td>
+    </tr>
+    <tr>
+        <th>Last deletion</th>
+        <td id="last_delete">{{info.last}}</td>
+    </tr>
+</table>
+<p>The service has been up for <span id="uptime">{{uptime.days}} days, {{uptime.hours}} hours and {{uptime.minutes}} minutes</span>.</p>
+</body>
+</html>

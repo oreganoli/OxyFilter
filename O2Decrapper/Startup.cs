@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace O2Decrapper
@@ -7,12 +8,14 @@ namespace O2Decrapper
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IInfoService, InfoService>();
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseMvcWithDefaultRoute();
+            app.UseDeveloperExceptionPage();
+            app.UseMvc();
         }
     }
 }

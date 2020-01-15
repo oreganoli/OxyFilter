@@ -8,8 +8,12 @@
     <ItemGroup>
         <PackageReference Include="MailKit" Version="2.4.1" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.0" />
         <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0" />
+        <PackageReference Include="Scriban" Version="2.1.1" />
     </ItemGroup>
 
 </Project>
