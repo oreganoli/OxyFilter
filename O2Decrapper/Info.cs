@@ -2,8 +2,15 @@ namespace O2Decrapper
 {
     public struct Info
     {
-        string Epoch;
-        string LastDelete;
-        int Counter;
+        public Info(string epoch, string lastDelete, int counter)
+        {
+            Epoch = epoch;
+            LastDelete = lastDelete;
+            Counter = counter;
+        }
+
+        public string Epoch;
+        public string LastDelete;
+        public int Counter;
     }
 }
