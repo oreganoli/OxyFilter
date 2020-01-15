@@ -13,6 +13,7 @@ namespace O2Decrapper
         {
             _infoService = service;
         }
+
         // GET
         [Route("/")]
         public IActionResult Index()
@@ -28,6 +29,17 @@ namespace O2Decrapper
             var uptime = DateTime.UtcNow.Subtract(tempInfo.Epoch).Duration();
             var html = Template.Parse(_template).Render(new {Info = info, Uptime = uptime});
             return Content(html, "text/html");
+        }
+        
+        [HttpGet, Route("/status")]
+        public IActionResult Status()
+        {
+            var info = _infoService.Get();
+            var output = new
+            {
+                LastDelete = info.Epoch.ToString("o"), info.Counter
+            };
+            return Json(output);
         }
     }
 }
