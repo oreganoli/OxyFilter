@@ -1,29 +1,34 @@
 ﻿using System;
-using System.Linq;
+using System.IO;
 using System.Threading;
-using MailKit;
-using MailKit.Net.Imap;
-
+using Microsoft.AspNetCore.Hosting;
 namespace O2Decrapper
 {
     internal static class Program
     {
+        public static readonly O2Handler Handler = new O2Handler();
         private static void Main()
         {
-            var handler = new O2Handler();
             new Thread(() => {
                 while (true)
                 {
-                    lock (handler)
+                    int period;
+                    lock (Handler)
                     {
-                        handler.Authenticate();
-                        handler.Remove();
+                        period = Handler.WaitPeriod;
+                        Handler.Authenticate();
+                        Handler.Remove();
                     }
-                    Thread.Sleep(handler.WaitPeriod);
+                    Thread.Sleep(period);
                 }
             }).Start();
-            Thread.Sleep(10000);
-            Console.WriteLine(handler.LastDelete);
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseStartup<Startup>()
+                .UseUrls("http://localhost:8000/")
+                .Build();
+            host.Start();
         }
     }
 }

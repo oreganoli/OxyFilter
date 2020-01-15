@@ -1,7 +1,5 @@
 using System;
-using System.IO;
 using System.Linq;
-using System.Threading;
 using MailKit;
 using MailKit.Net.Imap;
 
@@ -60,7 +58,9 @@ namespace O2Decrapper
             {
                 if (!Client.IsConnected)
                 {
+                    Console.WriteLine("(Re-)connecting..."); 
                     Client.Connect(SERVER_URL, PORT);
+                    Console.WriteLine("Connected.");
                 }
             }
             catch (Exception)
@@ -73,7 +73,9 @@ namespace O2Decrapper
             {
                 if (!Client.IsAuthenticated)
                 {
+                    Console.WriteLine("(Re-)authenticating...");
                     Client.Authenticate(Username, Password);
+                    Console.WriteLine("Authenticated.");
                 }
             }
             catch (Exception)
@@ -97,10 +99,11 @@ namespace O2Decrapper
                         $"UID: {msg.UniqueId}, From: {msg.Envelope.From}, Subject: \"{msg.Envelope.Subject}\"");
                     inbox.SetFlags(msg.UniqueId, MessageFlags.Seen | MessageFlags.Deleted, true);
                     Counter += 1;
+                    LastDelete = DateTime.UtcNow;
                 }
 
                 inbox.Expunge();
-                LastDelete = DateTime.UtcNow;
+                
             }
             catch (ProtocolException ex)
             {
