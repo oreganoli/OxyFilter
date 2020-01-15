@@ -1,5 +1,7 @@
 ﻿using System.Threading;
-
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Builder;
+using Microsoft.AspNetCore.Server.Kestrel;
 namespace O2Decrapper
 {
     internal static class Program
@@ -20,7 +22,12 @@ namespace O2Decrapper
                     Thread.Sleep(period);
                 }
             }).Start();
-            
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseStartup<Startup>()
+                .UseUrls("http://localhost:8000/")
+                .Build();
+            host.Start();
         }
     }
 }
