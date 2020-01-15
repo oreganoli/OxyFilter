@@ -2,7 +2,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Scriban;
 
-namespace O2Decrapper
+namespace OxyFilter
 {
     public class InfoController : Controller
     {

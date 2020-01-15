@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace O2Decrapper
+namespace OxyFilter
 {
     public class Startup
     {

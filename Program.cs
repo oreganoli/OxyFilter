@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading;
 using Microsoft.AspNetCore.Hosting;
-namespace O2Decrapper
+namespace OxyFilter
 {
     internal static class Program
     {

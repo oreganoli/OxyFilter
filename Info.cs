@@ -1,6 +1,6 @@
 using System;
 
-namespace O2Decrapper
+namespace OxyFilter
 {
     public struct Info
     

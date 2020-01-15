@@ -3,7 +3,7 @@ using System.Linq;
 using MailKit;
 using MailKit.Net.Imap;
 
-namespace O2Decrapper
+namespace OxyFilter
 {
     public class O2Handler
     {
@@ -20,17 +20,11 @@ namespace O2Decrapper
 
         public O2Handler()
         {
-            Username = Environment.GetEnvironmentVariable("O2_USERNAME");
-            Password = Environment.GetEnvironmentVariable("O2_PASSWORD");
+            Username = Util.ForceGetEnv("O2_USERNAME");
+            Password = Util.ForceGetEnv("O2_PASSWORD");
             try
             {
-                var period = Environment.GetEnvironmentVariable("WAIT_PERIOD");
-                if (period == null)
-                {
-                    Console.WriteLine("The WAIT_PERIOD environment variable must be set.");
-                    Environment.Exit(1);
-                }
-
+                var period = Util.ForceGetEnv("WAIT_PERIOD");
                 WaitPeriod = int.Parse(period);
                 if (WaitPeriod <= 0)
                 {
@@ -41,11 +35,6 @@ namespace O2Decrapper
             catch (Exception)
             {
                 Console.WriteLine("The WAIT_PERIOD environment variable must be a positive 32-bit signed integer.");
-                Environment.Exit(1);
-            }
-            if (Username == null || Password == null)
-            {
-                Console.WriteLine("The O2_USERNAME and O2_PASSWORD environment variables must be set.");
                 Environment.Exit(1);
             }
             Client = new ImapClient();

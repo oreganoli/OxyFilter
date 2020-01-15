@@ -1,4 +1,4 @@
-namespace O2Decrapper
+namespace OxyFilter
 {
     public class InfoService : IInfoService
     {
