@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Threading;
 using Microsoft.AspNetCore.Hosting;
 namespace OxyFilter
@@ -24,9 +25,9 @@ namespace OxyFilter
             }).Start();
             var host = new WebHostBuilder()
                 .UseKestrel()
+                .ConfigureKestrel(options => { options.Listen(IPAddress.Loopback, int.Parse(Util.ForceGetEnv("PORT"))); })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
-                .UseUrls("http://localhost:8000/")
                 .Build();
             host.Start();
         }
