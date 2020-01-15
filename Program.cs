@@ -19,6 +19,7 @@ namespace OxyFilter
                         period = Handler.WaitPeriod;
                         Handler.Authenticate();
                         Handler.Remove();
+                        Handler.Disconnect();
                     }
                     Thread.Sleep(period);
                 }

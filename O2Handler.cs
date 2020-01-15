@@ -100,5 +100,12 @@ namespace OxyFilter
                 Console.WriteLine(ex.Message);
             }
         }
+
+        public void Disconnect()
+        {
+            Console.WriteLine("Disconnecting...");
+            Client.Disconnect(true);
+            Console.WriteLine("Disconnected.");
+        }
     }
 }
